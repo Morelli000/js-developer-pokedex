@@ -1,4 +1,3 @@
-
 const pokeApi = {}
 
 function convertPokeApiDetailToPokemon(pokeDetail) {
@@ -12,7 +11,17 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     pokemon.types = types
     pokemon.type = type
 
-    pokemon.photo = pokeDetail.sprites.other.dream_world.front_default
+    const abilities = pokeDetail.abilities.map((abilitySlot) => abilitySlot.ability.name)
+    const [ability] = abilities
+
+    pokemon.abilities = abilities
+    pokemon.ability = ability
+
+    console.log(abilities, 'abilities', ability, 'ability')
+    
+    pokemon.photo = pokeDetail.sprites.other['official-artwork'].front_default
+
+    pokemon.shinyPhoto = pokeDetail.sprites.other['official-artwork'].front_shiny
 
     return pokemon
 }
